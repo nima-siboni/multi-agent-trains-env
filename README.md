@@ -113,3 +113,10 @@ The following methods can be useful for debugging:
 * ```step_agent(agent_id)``` which takes one step for the specified agent. This is the backbone of the ```step``` function.
 * ```conflict_detector()``` returns the number of conflicts at the current time.
 * ```get_x_y()``` which returns positions of the agents in two arrays (one for the x- and one for the y-direction).
+
+
+### Requirements
+
+* numpy
+* sys-os
+* matplotlib
