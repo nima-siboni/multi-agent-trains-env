@@ -20,7 +20,25 @@ Each train has:
 
 An animation of an instance of the environment for four agents is shown above. The numbers shown on top of the trains represent the number of passangers, and destinations are represented by blue squares. 
 
-## sds
+## The enviornment
+
+In the environment the agents are presented by their state which changes by the actions they take. As a result of taking actions, the environment produces a reward.
+
+### 1- Agent state
+The state of each agent is a tuple:
+* an integer number specifying is the position of agent on the track, and
+* an integer number representing the number of passangers on the train.
+
+The global state is the concatnation of the states of all agents.
+
+### 2- Agent actions
 
 Each agent can take two actions:
-* stay at the curre
+
+* stay at the current position (action number 0)
+* advance one step forward (action number 1).
+
+### 3- Reward Engineering
+
+This is the most tricky part! Here I have 
+
