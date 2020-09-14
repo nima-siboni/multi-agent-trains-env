@@ -47,7 +47,7 @@ Similar to the ```step``` function in OpenAI Gym, here step function returns:
 * a list boolean variables indicating the end of the episode for each agent,
 * a string of info (which is left empty)
 
-### 3- Reward Engineering
+### 4- Reward Engineering
 
 This is the most tricky part! Here, I want the reward to be able to reflect the following considerations:
 
@@ -73,7 +73,7 @@ Instantiation, stepping through time, and visualizations are demonstrated in ```
 
 Different parts of the above script are explained in the followings.
 
-### 1- Instantiation 
+### Instantiation 
 Here is an example of instantiation of the environment.
 ```
 env = Environment(ls1=10,
@@ -86,8 +86,31 @@ env = Environment(ls1=10,
                   conflict_cost=100.0,
                   nr_actions=2)
 ```
+where:
 
-### 2- Step
+* `ls1`, `lc`, `ls2`  -- the lengths of the first, second, and the last segments of the railway (`lc` being the `l`ength of the `c`ommon track),
+* `nr_agents` -- the number of agents,
+* `states` -- the global state of the system, which is a concatenation of states of all the agents. In the example here, the first two elements of the list are position and number of passangers of the first agent (starting at 0 with 1 passanger), the second pair of elements specifies that the second agent is at position 0 with 10 passangers onboard.
+* `time_cost` -- the cost of time for each passanger,
+* `destinations` -- the list of destinations of agents. For example here the destination of the second agent is 29. Of course all the destinations should be smaller than the total length of the tracks, i.e. smaller than `ls1 + lc + ls2`.
+* `conflict_cost` -- the cost of conflicts. The larger the better.
+* `nr_actions` -- the number of actions per agent. Currently, should be only two.
 
-## 
+### Step
 
+ After creating an instance of the environment one can step through time, using step methods:
+ ```
+ new_global_state, reward_lst, done_lst, info = env.step(actions_lst)
+ ```
+ where ```action_lst``` is the list of the actions of the agents. In accord with OpenAI Gym implementation of step method, the outputs are:
+ 
+ (i) the new global state, (ii) the list of rewards, (iii) a list of booleans indicating whether each agent has reached its destination, and (iv) some empty info. 
+ 
+ Refer to above Sec. about  **One step** for details of the outputs.
+
+### Other methods
+The following methods can be useful for debugging:
+* ```render()``` which renders the scene and optionally can save it as an image on the disk.
+* ```step_agent(agent_id)``` which takes one step for the specified agent. This is the backbone of the ```step``` function.
+* ```conflict_detector()``` returns the number of conflict at the current time.
+* ```get_x_y()``` which returns positions of the agents in two arrays (one for the x- and one for the y-direction).
