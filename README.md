@@ -116,7 +116,7 @@ The following methods can be useful for debugging:
 
 
 ### Requirements
-
-* numpy
-* sys-os
-* matplotlib
+The following packages are required
+* numpy 
+* os
+* matplotlib 
