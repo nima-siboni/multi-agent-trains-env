@@ -23,21 +23,21 @@ An animation of an instance of the environment for four agents is shown above. T
 
 In the environment the agents are presented by their state which changes by the actions they take. As a result of taking actions, the environment produces a reward.
 
-### 1- Agent state
+### Agent state
 The state of each agent is a tuple:
 * an integer number specifying is the position of agent on the track, and
 * an integer number representing the number of passengers on the train.
 
 The global state is the concatenation of the states of all agents.
 
-### 2- Agent actions
+### Agent actions
 
 Each agent can take two actions:
 
 * stay at the current position (action number 0)
 * advance one step forward (action number 1).
 
-### 3- One Step
+### One Step
 The environment takes a step, given a list consisting of one action per agent. This is very similar to the ```step``` method in OpenAI Gym, with a difference that here we need to pass the step function a list of actions (one per each agent), not one action.
 
 Similar to the ```step``` function in OpenAI Gym, here step function returns:
@@ -46,7 +46,7 @@ Similar to the ```step``` function in OpenAI Gym, here step function returns:
 * a list boolean variables indicating the end of the episode for each agent,
 * a string of info (which is left empty)
 
-### 4- Reward Engineering
+### Reward Engineering
 
 This is the most tricky part! Here, I want the reward to be able to reflect the following considerations:
 
