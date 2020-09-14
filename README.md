@@ -38,7 +38,7 @@ Each agent can take two actions:
 * stay at the current position (action number 0)
 * advance one step forward (action number 1).
 
-### 3- A Step
+### 3- One Step
 The environment takes an step, given a list consist of one action per agent. This is very similar to the ```step``` method in OpenAI Gym, with a difference that here we need to pass the step function a list of actions (one per each agent), not one action.
 
 Similar to the ```step``` function in OpenAI Gym, here step function returns:
@@ -67,7 +67,27 @@ For the first part:
 
 For the collective part, all the agents are punished similary if a conflict occurs. This part is particulary designed to be independent of the number of the passangers, as it is a matter of safety.
 
-# How to use the environment
+## How to use the environment
+Instantiation, stepping through time, and visualizations are demonstrated in ```simulator.py```. It can be executed by
+```python simulator.py```
 
+Different parts of the above script are explained in the followings.
 
+### 1- Instantiation 
+Here is an example of instantiation of the environment.
+```
+env = Environment(ls1=10,
+                  lc=10,
+                  ls2=10,
+                  nr_agents=4,
+                  states=[0.0, 1.0, 0.0, 10.0, 0.0, 3.0, 0., 200.],
+                  time_cost=1,
+                  destinations=[29.0, 29.0, 25.0, 29.0],
+                  conflict_cost=100.0,
+                  nr_actions=2)
+```
+
+### 2- Step
+
+## 
 
