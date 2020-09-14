@@ -38,7 +38,36 @@ Each agent can take two actions:
 * stay at the current position (action number 0)
 * advance one step forward (action number 1).
 
+### 3- A Step
+The environment takes an step, given a list consist of one action per agent. This is very similar to the ```step``` method in OpenAI Gym, with a difference that here we need to pass the step function a list of actions (one per each agent), not one action.
+
+Similar to the ```step``` function in OpenAI Gym, here step function returns:
+* the new global state, 
+* a list of rewards (one per agent),
+* a list boolean variables indicating the end of the episode for each agent,
+* a string of info (which is left empty)
+
 ### 3- Reward Engineering
 
-This is the most tricky part! Here I have 
+This is the most tricky part! Here, I want the reward to be able to reflect the following considerations:
+
+* the trains should get as fast as possible to their destinations,
+* no conflict should arise, and
+* the *overall* wainting time should be minimized.
+
+Based on the above criteria, the following scheme is presented for the rewards. 
+
+The reward of each agent is composed of two parts:
+* [single part] the reward which depends only on its state, and
+* [collectiov part] the reward which depends on the state of the other agents.
+
+For the first part:
+* if the agent moves forward, it is negatively rewarded in proportionality to the number of it passangers,
+* if the agent stays still, two times the above reward is considered.
+
+For the collective part, all the agents are punished similary if a conflict occurs. This part is particulary designed to be independent of the number of the passangers, as it is a matter of safety.
+
+# How to use the environment
+
+
 
